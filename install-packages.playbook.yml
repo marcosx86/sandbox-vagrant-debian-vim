@@ -1,0 +1,21 @@
+---
+- hosts: all
+  remote_user: marcos
+  become: true
+  become_method: sudo
+  become_user: root
+  tasks:
+  - name: Copy apt.conf for proxing DEBs
+    copy: src=proxy.apt.conf dest=/etc/apt/apt.conf
+ 
+  - name: install vim
+    apt:
+      name: vim
+      #state: present
+      #update_cache: true
+      install_recommends: no
+      #  - name: upgrade everything
+      #    apt:
+      #      name: "*"
+      #      state: latest
+      #      force_apt_get: true 
